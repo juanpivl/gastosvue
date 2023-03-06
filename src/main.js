@@ -4,10 +4,10 @@ import router from './router'
 import store from './store'
 
 import 'bootstrap/dist/css/bootstrap.css'
+import app  from './config/firebase'
 
 
-createApp(App).use(store).use(router).mount('#app')
 
-
+createApp(App).use(store).use(router).use(app).mount('#app')
 
 

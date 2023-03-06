@@ -1,25 +1,57 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { getAuth } from 'firebase/auth'
+import authLayout from '../modules/auth/layout/authLayout.vue'
+import appLayout from '../modules/app/layout/appLayout.vue'
+import homeView from '../modules/app/views/homeView.vue'
+import otrosView from '../modules/app/views/otrosView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    name: 'authLayout',
+    component: authLayout
   },
+  
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/app',
+    name: 'app',
+    component: appLayout,
+    children: [
+     {
+       path: '/homeView',
+        name:'homeView',
+        component: homeView  
+    },
+    {
+      path: '/otrosView',
+       name:'otrosView',
+       component: otrosView  
+   }
+    ],
+    meta: { requiresAuth: true }
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const auth = getAuth()
+
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (auth.currentUser) {
+      // El usuario está autenticado, permitir acceso a la ruta protegida
+      next()
+    } else {
+      // El usuario no está autenticado, redirigir a la página de inicio de sesión
+      next({ name: 'authLayout' })
+    }
+  } else {
+    // La ruta no requiere autenticación, permitir acceso
+    next()
+  }
 })
 
 export default router

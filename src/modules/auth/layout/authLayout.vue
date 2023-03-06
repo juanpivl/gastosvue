@@ -9,11 +9,11 @@
             <h1>WELCOME</h1>
             <h2>spend wisely</h2>
 
-
           </div>
         </div>
         <div class="column right-column" :class="{ 'col-md-12': !showLeftColumn }">
           <formC/>
+          
         </div>
       </div>
     </div>
@@ -40,6 +40,8 @@ export default {
 </script>
 
 <style scoped  >
+
+
 .container {
   width: 100%;
   height: 90%;
