@@ -8,6 +8,7 @@ import app  from './config/config'
 
 
 
+
 createApp(App).use(store).use(router).use(app).mount('#app')
 
 

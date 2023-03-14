@@ -1,13 +1,12 @@
+
 <template>
   <div>
     <div class="container-fluid style">
-      <div>
-        <h1>Transacciones</h1>
-        <br>
+      <div class="table-container">
         <tableC :operaciones="operaciones"/>
       </div>
 
-      <div>
+      <div class="form-container">
         <div class="contenedor-form">
           <!-- Aquí va el formulario -->
           <formularioC/>
@@ -18,22 +17,11 @@
 </template>
 
 <script>
-import { initializeApp } from "firebase/app";
-import { getDatabase, ref } from "firebase/database";
 import { onValue } from "firebase/database";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyBKX7Y-t_ILAGwUhNv6MSGDcfpdtfOq_1o",
-  authDomain: "gastosvue-6737a.firebaseapp.com",
-  projectId: "gastosvue-6737a",
-  storageBucket: "gastosvue-6737a.appspot.com",
-  messagingSenderId: "830310066903",
-  appId: "1:830310066903:web:9ff165481307bc06f01e92",
-};
+import gastosRef from "@/config/operacion"
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const gastosRef = ref(db, "gastos");
+const gasto = gastosRef
 
 import tableC from "../components/tableC.vue";
 import formularioC from '../components/formularioC.vue';
@@ -51,7 +39,7 @@ export default {
   
   created() {
     // Obtener los datos de Firebase
-    onValue(gastosRef, (snapshot) => {
+    onValue(gasto, (snapshot) => {
       const operaciones = [];
       let id = 1;
       snapshot.forEach((childSnapshot) => {
@@ -63,10 +51,8 @@ export default {
     });
   },
 };
+
 </script>
-
-
-
 
 <style scoped>
 .style {
@@ -81,14 +67,19 @@ export default {
   text-align: center;
 }
 
+.table-container {
+  width: 66.66%;
+  padding-right: 1%;
+}
+
+.form-container {
+  width: 33.33%;
+}
 
 .contenedor-form {
-  
-  width: 600px;
   border-radius: 2%;
   padding: 10%;
   margin: 8%;
 }
-
 
 </style>
