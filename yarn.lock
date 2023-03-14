@@ -1571,6 +1571,11 @@
   "resolved" "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.0.tgz"
   "version" "1.1.0"
 
+"@quasar/extras@^1.15.11":
+  "integrity" "sha512-EEXL10EJQmL9jNs5fp0Kd/nyonG8hTODolj+qpYNPG3qEEoy3txr05Pdmp9qJYaXIzP9rOS9FGhFe9Mnq6MBBg=="
+  "resolved" "https://registry.npmjs.org/@quasar/extras/-/extras-1.15.11.tgz"
+  "version" "1.15.11"
+
 "@sideway/address@^4.1.3":
   "integrity" "sha512-7vwq+rOHVWjyXxVlR76Agnvhy8I9rpzjosTESvmhNeXOXdZZB15Fl+TI9x1SiHZH5Jv2wTGduSxFDIaq0m3DUw=="
   "resolved" "https://registry.npmjs.org/@sideway/address/-/address-4.1.4.tgz"
@@ -4750,6 +4755,11 @@
   "resolved" "https://registry.npmjs.org/module-alias/-/module-alias-2.2.2.tgz"
   "version" "2.2.2"
 
+"moment@^2.29.4":
+  "integrity" "sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w=="
+  "resolved" "https://registry.npmjs.org/moment/-/moment-2.29.4.tgz"
+  "version" "2.29.4"
+
 "mrmime@^1.0.0":
   "integrity" "sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw=="
   "resolved" "https://registry.npmjs.org/mrmime/-/mrmime-1.0.1.tgz"
@@ -5527,6 +5537,11 @@
   "version" "6.11.0"
   dependencies:
     "side-channel" "^1.0.4"
+
+"quasar@^2.11.7":
+  "integrity" "sha512-OzDwYfoSwZbwqfNWz9Bfn1mhGE8YMxpTLhPvVkQU87ePF6qFj4aWttcTUifXITKldOAZziN1Mmv8VLQyITHwiw=="
+  "resolved" "https://registry.npmjs.org/quasar/-/quasar-2.11.7.tgz"
+  "version" "2.11.7"
 
 "queue-microtask@^1.2.2":
   "integrity" "sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A=="

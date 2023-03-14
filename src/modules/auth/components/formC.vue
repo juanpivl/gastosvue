@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 
 export default {
   data() {
@@ -39,6 +39,24 @@ export default {
     formValid() {
       return this.emailValid && this.passwordValid
     },
+  },
+  created() {
+    const auth = getAuth()
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.$router.push('/homeView')
+      }
+    })
+  },
+  beforeMount() {
+    const auth = getAuth()
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.$router.push('/homeView')
+      }
+    })
   },
   methods: {
     login() {
@@ -77,6 +95,9 @@ export default {
   },
 }
 </script>
+
+
+
 
 <style scoped>
 .back{

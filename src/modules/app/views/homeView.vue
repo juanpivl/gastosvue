@@ -1,103 +1,72 @@
 <template>
-  <div >
+  <div>
     <div class="container-fluid style">
       <div>
         <h1>Transacciones</h1>
-        <div class="container table">
-          <tableC :operaciones="operaciones" />
+        <br>
+        <tableC :operaciones="operaciones"/>
+      </div>
+
+      <div>
+        <div class="contenedor-form">
+          <!-- Aquí va el formulario -->
+          <formularioC/>
         </div>
       </div>
-      <div>
-
-<h1>holaaaaaaaaaaa</h1>
-</div>
     </div>
-    
   </div>
 </template>
 
 <script>
+import { initializeApp } from "firebase/app";
+import { getDatabase, ref } from "firebase/database";
+import { onValue } from "firebase/database";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBKX7Y-t_ILAGwUhNv6MSGDcfpdtfOq_1o",
+  authDomain: "gastosvue-6737a.firebaseapp.com",
+  projectId: "gastosvue-6737a",
+  storageBucket: "gastosvue-6737a.appspot.com",
+  messagingSenderId: "830310066903",
+  appId: "1:830310066903:web:9ff165481307bc06f01e92",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const gastosRef = ref(db, "gastos");
+
 import tableC from "../components/tableC.vue";
+import formularioC from '../components/formularioC.vue';
 
 export default {
-  components: {
+  components:{
     tableC,
+    formularioC
   },
   data() {
     return {
-      operaciones: [
-        {
-          id: 1,
-          concepto: "Comida",
-          cantidad: 100,
-          fecha: "2023-03-01",
-        },
-        {
-          id: 2,
-          concepto: "Transporte",
-          cantidad: 50,
-          fecha: "2023-03-02",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 1,
-          concepto: "Comida",
-          cantidad: 100,
-          fecha: "2023-03-01",
-        },
-        {
-          id: 2,
-          concepto: "Transporte",
-          cantidad: 50,
-          fecha: "2023-03-02",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        {
-          id: 3,
-          concepto: "Ropa",
-          cantidad: 200,
-          fecha: "2023-03-03",
-        },
-        
-      ],
+      operaciones: [],
     };
+  },
+  
+  created() {
+    // Obtener los datos de Firebase
+    onValue(gastosRef, (snapshot) => {
+      const operaciones = [];
+      let id = 1;
+      snapshot.forEach((childSnapshot) => {
+        const operacion = childSnapshot.val();
+        operacion.id = id++;
+        operaciones.push(operacion);
+      });
+      this.operaciones = operaciones;
+    });
   },
 };
 </script>
+
+
+
 
 <style scoped>
 .style {
@@ -109,12 +78,17 @@ export default {
   align-content: flex-start;
   justify-content: left;
   display: flex;
+  text-align: center;
 }
 
 
-.table {
-  padding: 1%;
-  margin: 10;
-  display: flex;
+.contenedor-form {
+  
+  width: 600px;
+  border-radius: 2%;
+  padding: 10%;
+  margin: 8%;
 }
+
+
 </style>

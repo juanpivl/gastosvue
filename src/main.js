@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import app  from './config/firebase'
+import app  from './config/config'
 
 
 
