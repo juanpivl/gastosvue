@@ -21,6 +21,7 @@
   </div>
 </template>
 
+
 <script>
 import { getAuth, onAuthStateChanged, signInWithEmailAndPassword } from 'firebase/auth'
 
@@ -72,7 +73,8 @@ export default {
 
       signInWithEmailAndPassword(auth, email, password)
         .then(() => {
-          console.log('Usuario autenticado')
+          const currentUser = auth.currentUser;
+          console.log('Usuario autenticado:', currentUser)
           // Redirigir al usuario a la página de inicio
           this.$router.push('/homeView')
         })
@@ -95,9 +97,6 @@ export default {
   },
 }
 </script>
-
-
-
 
 <style scoped>
 .back{
